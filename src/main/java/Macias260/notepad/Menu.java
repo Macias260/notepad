@@ -1,25 +1,28 @@
 package Macias260.notepad;
 
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class Menu extends JFrame implements ActionListener {
-    private JMenuBar menuBar;
-    private JMenu menu1;
-    private JMenu menu2;
-    private JMenuItem menuItem1;
-    private JMenuItem menuItem2;
-    private JMenuItem menuItem3;
-    private JMenuItem menuItem4;
-    private JMenuItem menuItem5;
-    private JMenuItem menuItem6;
-    private JMenuItem menuItem7;
-    private JMenuItem menuItemClose;
+public class Menu extends JFrame {
+    @Getter(AccessLevel.NONE)
+    JMenuBar menuBar;
+    JMenu menu1;
+    JMenu menu2;
+    JMenuItem menuItem1;
+    JMenuItem menuItem2;
+    JMenuItem menuItem3;
+    JMenuItem menuItem4;
+    JMenuItem menuItem5;
+    JMenuItem menuItem6;
+    JMenuItem menuItem7;
+
 
     public Menu() throws HeadlessException {
 
@@ -35,12 +38,7 @@ public class Menu extends JFrame implements ActionListener {
         menuItem3 = new JMenuItem("Save");
         menuItem4 = new JMenuItem("Print");
 
-//        Add action listener
-        menuItem1.addActionListener(this);
-        menuItem2.addActionListener(this);
-        menuItem3.addActionListener(this);
-        menuItem4.addActionListener(this);
-
+//        Add items to File menu
         menu1.add(menuItem1);
         menu1.add(menuItem2);
         menu1.add(menuItem3);
@@ -53,31 +51,18 @@ public class Menu extends JFrame implements ActionListener {
         menuItem5 = new JMenuItem("Cut");
         menuItem6 = new JMenuItem("Copy");
         menuItem7 = new JMenuItem("Paste");
-//        Add action listener
-        menuItem5.addActionListener(this);
-        menuItem6.addActionListener(this);
-        menuItem7.addActionListener(this);
 
+//        Add items to Edit menu
         menu2.add(menuItem5);
         menu2.add(menuItem6);
         menu2.add(menuItem7);
 
-//        Create close item
-        menuItemClose = new JMenuItem("Close");
-//        Add action listener
-        menuItemClose.addActionListener(this);
-
 //        Add menus to menu bar
         menuBar.add(menu1);
         menuBar.add(menu2);
-        menuBar.add(menuItemClose);
-
 
 
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
 
-    }
 }
