@@ -1,11 +1,9 @@
 package Macias260.notepad;
 
-/**
- * Hello world!
- */
+
 public class App {
     public static void main(String[] args) {
 
-
+        TextEditor textEditor = new TextEditor();
     }
 }

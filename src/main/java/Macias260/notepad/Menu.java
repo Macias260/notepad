@@ -22,6 +22,7 @@ public class Menu extends JFrame {
     JMenuItem menuItem5;
     JMenuItem menuItem6;
     JMenuItem menuItem7;
+    JMenuItem menuItem8;
 
 
     public Menu() throws HeadlessException {
@@ -37,12 +38,14 @@ public class Menu extends JFrame {
         menuItem2 = new JMenuItem("Open");
         menuItem3 = new JMenuItem("Save");
         menuItem4 = new JMenuItem("Print");
+        menuItem8 = new JMenuItem("Exit");
 
 //        Add items to File menu
         menu1.add(menuItem1);
         menu1.add(menuItem2);
         menu1.add(menuItem3);
         menu1.add(menuItem4);
+        menu1.add(menuItem8);
 
 //        Create a Edit menu
         menu2 = new JMenu("Edit");
