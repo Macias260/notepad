@@ -1,5 +1,9 @@
 package Macias260.notepad;
 
+/**
+ * @author Macias260
+ */
+
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

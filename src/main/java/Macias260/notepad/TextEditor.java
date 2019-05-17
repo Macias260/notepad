@@ -1,5 +1,9 @@
 package Macias260.notepad;
 
+/**
+ * @author Macias260
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
