@@ -46,62 +46,72 @@ public class TextEditor extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String st = e.getActionCommand();
 
-        if (st.equals("New")) {
-            TextEditor t = new TextEditor();
-        } else if (st.equals("Open")) {
-            JFileChooser fileChooser = new JFileChooser();
+        switch (st) {
+            case "New":
+                TextEditor t = new TextEditor();
+                break;
+            case "Open":
+                JFileChooser fc1 = new JFileChooser();
 
-            int i = fileChooser.showOpenDialog(null);
-            if (i == JFileChooser.APPROVE_OPTION) {
-                File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
-                try {
-                    String s1, s2;
-                    FileReader fileReader = new FileReader(file);
-                    BufferedReader br = new BufferedReader(fileReader);
-                    s2 = br.readLine();
+                int a = fc1.showOpenDialog(null);
+                if (a == JFileChooser.APPROVE_OPTION) {
+                    File file = new File(fc1.getSelectedFile().getAbsolutePath());
+                    try {
+                        String s1, s2;
+                        FileReader fileReader = new FileReader(file);
+                        BufferedReader br = new BufferedReader(fileReader);
+                        s2 = br.readLine();
 
-                    while ((s1 = br.readLine()) != null) {
-                        s2 = s2 + "\n" + s1;
+                        while ((s1 = br.readLine()) != null) {
+                            s2 = s2 + "\n" + s1;
+                        }
+
+                        TextEditor textEditor = new TextEditor();
+                        textEditor.textArea.setText(s2);
+
+                    } catch (Exception evt) {
+                        JOptionPane.showMessageDialog(frame, evt.getMessage());
                     }
 
-                    TextEditor textEditor = new TextEditor();
-                    textEditor.textArea.setText(s2);
-
-                } catch (Exception evt) {
-                    JOptionPane.showMessageDialog(frame, evt.getMessage());
                 }
-            }
-        } else if (st.equals("Save")) {
-            JFileChooser fileChooser = new JFileChooser();
-            int i = fileChooser.showOpenDialog(null);
-            if (i == JFileChooser.APPROVE_OPTION) {
-                File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
+                break;
+            case "Save":
+                JFileChooser fc2 = new JFileChooser();
+                int b = fc2.showOpenDialog(null);
+                if (b == JFileChooser.APPROVE_OPTION) {
+                    File file = new File(fc2.getSelectedFile().getAbsolutePath());
+                    try {
+                        FileWriter fileWriter = new FileWriter(file, false);
+                        BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+                        bufferedWriter.write(textArea.getText());
+                        bufferedWriter.flush();
+                        bufferedWriter.close();
+                    } catch (IOException exception) {
+                        JOptionPane.showMessageDialog(frame, exception.getMessage());
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(frame, "Operation was canceled");
+                }
+                break;
+            case "Print":
                 try {
-                    FileWriter fileWriter = new FileWriter(file, false);
-                    BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-                    bufferedWriter.write(textArea.getText());
-                    bufferedWriter.flush();
-                    bufferedWriter.close();
-                } catch (IOException exception) {
-                    JOptionPane.showMessageDialog(frame, exception.getMessage());
+                    textArea.print();
+                } catch (PrinterException ex) {
+                    JOptionPane.showMessageDialog(frame, ex.getMessage());
                 }
-            } else {
-                JOptionPane.showMessageDialog(frame, "Operation was canceled");
-            }
-        } else if (st.equals("Print")) {
-            try {
-                textArea.print();
-            } catch (PrinterException ex) {
-                JOptionPane.showMessageDialog(frame, ex.getMessage());
-            }
-        } else if (st.equals("Cut")) {
-            textArea.cut();
-        } else if (st.equals("Copy")) {
-            textArea.copy();
-        } else if (st.equals("Paste")) {
-            textArea.paste();
-        } else if (st.equals("Exit")) {
-            frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                break;
+            case "Cut":
+                textArea.cut();
+                break;
+            case "Copy":
+                textArea.copy();
+                break;
+            case "Paste":
+                textArea.paste();
+                break;
+            case "Exit":
+                frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                break;
 
         }
 
